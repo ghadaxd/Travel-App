@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Travel Planner</title>
+    <!-- Load Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="src/client/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="src/client/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="src/client/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="src/client/favicon/site.webmanifest" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Travel Planner</h1>
+    </header>
+    <main>
+      <section id="main-content">
+        <div id="main-trip-card" class="card flex-center-col">
+          <!-- add this class for the first time "flex-center-col" -->
+          <h1>Hey, 😃</h1>
+          <p>You don't have any trips yet, start by adding your first trip.</p>
+          <button class="btn primary-btn">Add Trip</button>
+          <!-- <div class="trip-preview-img"></div>
+          <div id="main-trip-info">
+            <a href="#" id="delete-trip"></a>
+            <div class="trip-info">
+              <h2 class="dist-name">Paris, France</h2>
+              <h4 class="departure-date">02/12/2020</h4>
+              <h3 class="remaining-days">220 days</h3>
+              <h5 class="weather-desc">Mostly cloudy throughout the day.</h5>
+            </div>
+            <div class="current-weather-details">
+              <div class="flex-center-col">
+                <span>High</span><span>45</span>
+              </div>
+              <div class="flex-center-col">
+                <span>Low</span> <span>12</span>
+              </div>
+              <div class="flex-center-col">
+                <span>Wind</span> <span>10</span>
+              </div>
+              <div class="flex-center-col">
+                <span>Cloud</span> <span>13</span>
+              </div>
+            </div>
+          </div> -->
+        </div>
+        <div id="current-weather" class="bg-grad">
+          <h3 id="saying-hi">Good Morning</h3>
+
+          <img
+            src="src/client/assets/sun.svg"
+            alt="Sun"
+            class="current-weather-icon"
+            width="40%"
+            height="50%"
+          />
+
+          <div id="current-weather-info">
+            <span id="temperature">25°</span><br />
+            <span id="city">San Francisco</span>
+          </div>
+
+          <div class="current-weather-details">
+            <div class="flex-center-col"><span>High</span><span>45</span></div>
+            <div class="flex-center-col"><span>Low</span> <span>12</span></div>
+            <div class="flex-center-col"><span>Wind</span> <span>10</span></div>
+            <div class="flex-center-col">
+              <span>Cloud</span> <span>13</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="add-trip-form">
+        <form class="card">
+          <h1>Add Trip</h1>
+          <input type="text" placeholder="Traveling to" />
+          <input type="date" placeholder="Departing in" />
+          <button class="btn primary-btn">Add</button>
+          <a href="#">
+            <img
+              src="src/client/assets/cancel.svg"
+              alt="Cancel icon"
+              width="5%"
+              height="45%"
+              id="cancel-add-trip"
+            />
+          </a>
+        </form>
+      </section>
+      <section id="coming-trips">
+        <!-- <div id="coming-trips-load">
+          <div class="card trip-preview">
+            <div class="trip-preview-img"></div>
+            <div class="trip-info">
+              <h2 class="dist-name">Paris, France</h2>
+              <h4 class="departure-date">02/12/2020</h4>
+              <h3 class="remaining-days">220 days</h3>
+            </div>
+          </div>
+          <div class="card trip-preview">
+            <div class="trip-preview-img"></div>
+            <div class="trip-info">
+              <h2 class="dist-name">Paris, France</h2>
+              <h4 class="departure-date">02/12/2020</h4>
+              <h3 class="remaining-days">220 days</h3>
+            </div>
+          </div>
+        </div>
+
+        <div id="ctrl-btn" class="flex-center-col">
+          <button class="btn bg-grad">Add Trip</button>
+          <button class="btn bg-grad">My Trips</button>
+        </div> -->
+      </section>
+      <!-- <section id="more-trips">
+        <div class="row">
+          <div class="card trip-preview">
+            <div class="trip-preview-img"></div>
+            <div class="trip-info">
+              <h2 class="dist-name">First, France</h2>
+              <h4 class="departure-date">02/12/2020</h4>
+              <h3 class="remaining-days">220 days</h3>
+            </div>
+          </div>
+          <div class="card trip-preview">
+            <div class="trip-preview-img"></div>
+            <div class="trip-info">
+              <h2 class="dist-name">Second, France</h2>
+              <h4 class="departure-date">02/12/2020</h4>
+              <h3 class="remaining-days">220 days</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="card trip-preview">
+            <div class="trip-preview-img"></div>
+            <div class="trip-info">
+              <h2 class="dist-name">Third, France</h2>
+              <h4 class="departure-date">02/12/2020</h4>
+              <h3 class="remaining-days">220 days</h3>
+            </div>
+          </div>
+          <div class="card trip-preview">
+            <div class="trip-preview-img"></div>
+            <div class="trip-info">
+              <h2 class="dist-name">Fourth, France</h2>
+              <h4 class="departure-date">02/12/2020</h4>
+              <h3 class="remaining-days">220 days</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="card trip-preview">
+            <div class="trip-preview-img"></div>
+            <div class="trip-info">
+              <h2 class="dist-name">Third, France</h2>
+              <h4 class="departure-date">02/12/2020</h4>
+              <h3 class="remaining-days">220 days</h3>
+            </div>
+          </div>
+        </div>
+
+        <div id="more-trips-ctrl">
+          <button class="btn primary-btn">More Trips</button>
+          <button class="btn secondary-btn">Hide Trips</button>
+        </div>
+      </section> -->
+    </main>
+    <!-- <script>
+      // Check that service workers are supported
+      // if ("serviceWorker" in navigator) {
+      //   // Use the window load event to keep the page load performant
+      //   window.addEventListener("load", () => {
+      //     navigator.serviceWorker.register("/service-worker.js");
+      //   });
+      // }
+    </script> -->
+  </body>
+</html>
