@@ -420,9 +420,22 @@ input:focus {
 }
 
 /* For tablet */
-@media (max-width: 890px) and (min-width: 700px) {
+@media (min-width: 700px) and (max-width: 890px) {
+  body {
+    grid-template-columns: 1em 1fr 1em;
+  }
 }
 
 /* For desktop */
-@media (max-width: 1024px) and (min-width: 891px) {
+@media (min-width: 891px) and (max-width: 1024px) {
+  body {
+    grid-template-columns: 5em 1fr 5em;
+  }
+}
+
+/* For large screen */
+@media (min-width: 1225px) and (max-width: 1440px) {
+  body {
+    grid-template-columns: 10em 1fr 10em;
+  }
 }
