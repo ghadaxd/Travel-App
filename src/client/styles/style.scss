@@ -22,7 +22,7 @@ $elem-border-radius: 1em;
 body {
   display: grid;
   grid-template-columns: 30em 1fr 30em;
-  grid-template-rows: 15vh 1fr;
+  grid-template-rows: 5em 1fr;
   grid-template-areas:
     ". header ."
     ". main .";
@@ -37,7 +37,6 @@ header {
   display: flex;
   align-items: flex-end;
   padding-bottom: 1em;
-  // border: #fff solid 1px;
 }
 
 h1 {
@@ -47,6 +46,7 @@ h1 {
 
 p {
   color: $dg-font-color;
+  text-align: center;
 }
 
 main {
@@ -96,6 +96,12 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.flex-row-space {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 // main-content *********************
@@ -162,9 +168,15 @@ main {
 
 #current-weather {
   width: 35%;
-  height: 30vh;
   border-radius: $card-border-radius;
   color: $figure-font-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .flex-center-col {
+    align-items: unset;
+  }
 }
 
 #saying-hi {
@@ -172,15 +184,20 @@ main {
 }
 
 .current-weather-icon {
-  position: relative;
-  left: 12em;
-  bottom: 2em;
+  width: 30%;
   opacity: 80%;
 }
 
 #current-weather-info {
-  position: relative;
-  bottom: 2em;
+  height: 40%;
+  justify-content: space-between;
+
+  .flex-center-col {
+    align-items: center;
+  }
+}
+
+#current-weather-temp {
   padding-left: 1em;
 }
 
@@ -199,9 +216,7 @@ main {
   align-items: center;
   background-color: $primary-btn-bg-color;
   padding: 0 1.5em;
-  height: 20%;
-  position: relative;
-  bottom: 1.7em;
+  height: 50%;
   color: $figure-font-color;
   border-radius: 0 0 $card-border-radius $card-border-radius;
 }
@@ -367,21 +382,47 @@ input:focus {
   }
 }
 
-/* For mobile and tablet */
-@media (max-width: 450px), (max-width: 890px) and (min-width: 700px) {
+/* For mobile  */
+@media (max-width: 450px) {
   body {
     grid-template-columns: 1em 1fr 1em;
-    grid-template-rows: 6em 1fr 2em;
   }
-  main {
-    grid-template-rows: 7.5em 25em 15em;
+
+  #main-content {
+    flex-direction: column-reverse;
   }
-  #sentiments {
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 0.5em;
+
+  #main-trip-card {
+    width: auto;
+    padding: 1em;
   }
-  footer {
-    font-size: 0.8em;
+
+  #current-weather {
+    width: auto;
+    // height: 10em;
+    margin-bottom: 1em;
+
+    #saying-hi {
+      margin-top: 0.5em;
+      padding-left: 0.5em;
+    }
   }
+
+  .current-weather-details {
+    padding: 0.5em 1em;
+    margin-top: 1em;
+    font-size: 0.8rem;
+  }
+
+  .btn {
+    width: 40%;
+  }
+}
+
+/* For tablet */
+@media (max-width: 890px) and (min-width: 700px) {
+}
+
+/* For desktop */
+@media (max-width: 1024px) and (min-width: 891px) {
 }

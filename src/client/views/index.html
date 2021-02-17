@@ -63,27 +63,35 @@
           </div> -->
         </div>
         <div id="current-weather" class="bg-grad">
-          <h3 id="saying-hi">Good Morning</h3>
+          <div class="flex-row-space">
+            <h3 id="saying-hi">Good Morning</h3>
 
-          <img
-            src="src/client/assets/sun.svg"
-            alt="Sun"
-            class="current-weather-icon"
-            width="40%"
-            height="50%"
-          />
-
-          <div id="current-weather-info">
-            <span id="temperature">25°</span><br />
-            <span id="city">San Francisco</span>
+            <img
+              src="src/client/assets/sun.svg"
+              alt="Sun"
+              class="current-weather-icon"
+            />
           </div>
 
-          <div class="current-weather-details">
-            <div class="flex-center-col"><span>High</span><span>45</span></div>
-            <div class="flex-center-col"><span>Low</span> <span>12</span></div>
-            <div class="flex-center-col"><span>Wind</span> <span>10</span></div>
-            <div class="flex-center-col">
-              <span>Cloud</span> <span>13</span>
+          <div id="current-weather-info" class="flex-center-col">
+            <div id="current-weather-temp">
+              <span id="temperature">25°</span><br />
+              <span id="city">San Francisco</span>
+            </div>
+
+            <div class="current-weather-details">
+              <div class="flex-center-col">
+                <span>High</span><span>45</span>
+              </div>
+              <div class="flex-center-col">
+                <span>Low</span> <span>12</span>
+              </div>
+              <div class="flex-center-col">
+                <span>Wind</span> <span>10</span>
+              </div>
+              <div class="flex-center-col">
+                <span>Cloud</span> <span>13</span>
+              </div>
             </div>
           </div>
         </div>
