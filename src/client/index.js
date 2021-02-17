@@ -8,7 +8,7 @@ import "./favicon/favicon-16x16.png";
 import "./favicon/site.webmanifest";
 
 // scss files.
-import "./styles/base.scss";
+import "./styles/style.scss";
 // import "./styles/form.scss";
 // import "./styles/circle.scss";
 // import "./styles/results.scss";
