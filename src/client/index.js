@@ -1,6 +1,8 @@
 // import { generateSentimentAnalysis } from "./js/sentimentAnalysisGenerator";
 // import { handleSubmit } from "./js/formHandler";
 
+import { sayHi } from "./js/cuurentWeatherFetcher";
+
 // Loading favicon
 import "./favicon/apple-touch-icon.png";
 import "./favicon/favicon-32x32.png";
@@ -14,3 +16,5 @@ import "./styles/style.scss";
 // import "./styles/results.scss";
 
 // export { generateSentimentAnalysis, handleSubmit };
+
+export { sayHi };
