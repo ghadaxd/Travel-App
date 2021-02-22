@@ -121,15 +121,21 @@
       <section id="add-trip-form">
         <form class="card">
           <h1>Add Trip</h1>
-          <input type="text" placeholder="Traveling to" />
-          <input type="date" placeholder="Departing in" />
-          <button class="btn primary-btn">Add</button>
+          <div id="destination-error" class="error"></div>
+          <input id="destination" type="text" placeholder="Traveling to" />
+          <input
+            id="departure-date"
+            type="date"
+            min="today"
+            placeholder="Departing in"
+          />
+          <button id="add-trip-btn" class="btn primary-btn">Add</button>
           <a id="hide-add-trip-form" href="#">
             <img
               src="../assets/cancel.svg"
               alt="Cancel icon"
-              width="5%"
-              height="45%"
+              width="35"
+              height="35"
               id="cancel-add-trip"
             />
           </a>
