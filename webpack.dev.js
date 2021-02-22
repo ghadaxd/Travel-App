@@ -29,7 +29,7 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
-        test: /\.(png|webmanifest|manifest|jpg|svg)$/i,
+        test: /\.(png|ico|webmanifest|manifest)$/i,
         loader: "file-loader",
         options: {
           name: "[name].[ext]",
@@ -42,6 +42,14 @@ module.exports = {
         options: {
           name: "[name].[ext]",
           outputPath: "assets",
+        },
+      },
+      {
+        test: /([a-z][0-9]{2}[a-z])\.(png)$/i,
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          outputPath: "assets/weather_icons",
         },
       },
     ],

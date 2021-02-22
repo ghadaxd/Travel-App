@@ -9,21 +9,21 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="src/client/favicon/apple-touch-icon.png"
+      href="../favicon/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="src/client/favicon/favicon-32x32.png"
+      href="../favicon/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="src/client/favicon/favicon-16x16.png"
+      href="../favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="src/client/favicon/site.webmanifest" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
   </head>
 
   <body>
@@ -67,7 +67,7 @@
             <h3 id="saying-hi">Good Morning</h3>
 
             <img
-              src="src/client/assets/sun.svg"
+              src="../assets/sun.svg"
               alt="Saying hi icon"
               id="current-weather-icon"
             />
@@ -75,22 +75,42 @@
 
           <div id="current-weather-info" class="flex-center-col">
             <div id="current-weather-temp">
-              <span id="temperature">25°</span><br />
-              <span id="city">San Francisco</span>
+              <span id="temperature">--°</span><br />
+              <span id="city">--- ----</span>
             </div>
 
             <div class="current-weather-details">
               <div class="flex-center-col">
-                <span>High</span><span>45</span>
+                <img
+                  src="../assets/sun.svg"
+                  width="25"
+                  height="25"
+                  alt="Sunrise time"
+                /><span id="sunrise">--</span>
               </div>
               <div class="flex-center-col">
-                <span>Low</span> <span>12</span>
+                <img
+                  src="../assets/sunset.svg"
+                  width="25"
+                  height="25"
+                  alt="Sunset time"
+                /><span id="sunset">--</span>
               </div>
               <div class="flex-center-col">
-                <span>Wind</span> <span>10</span>
+                <img
+                  src="../assets/wind.svg"
+                  width="25"
+                  height="25"
+                  alt="Wind speed"
+                /><span id="wind">--</span>
               </div>
               <div class="flex-center-col">
-                <span>Cloud</span> <span>13</span>
+                <img
+                  src="../assets/clouds.svg"
+                  width="25"
+                  height="25"
+                  alt="Clouds"
+                /><span id="clouds">--</span>
               </div>
             </div>
           </div>
@@ -104,7 +124,7 @@
           <button class="btn primary-btn">Add</button>
           <a href="#">
             <img
-              src="src/client/assets/cancel.svg"
+              src="../assets/cancel.svg"
               alt="Cancel icon"
               width="5%"
               height="45%"

@@ -1,20 +1,27 @@
-// import { generateSentimentAnalysis } from "./js/sentimentAnalysisGenerator";
-// import { handleSubmit } from "./js/formHandler";
-
-import { sayHi } from "./js/cuurentWeatherFetcher";
-
-// Loading favicon
-import "./favicon/apple-touch-icon.png";
-import "./favicon/favicon-32x32.png";
-import "./favicon/favicon-16x16.png";
-import "./favicon/site.webmanifest";
+import { fetchCurrentWeather } from "./js/cuurentWeatherFetcher";
+export { fetchCurrentWeather };
 
 // scss files.
 import "./styles/style.scss";
-// import "./styles/form.scss";
-// import "./styles/circle.scss";
-// import "./styles/results.scss";
 
-// export { generateSentimentAnalysis, handleSubmit };
+// Loading favicon
+import "./favicon/android-chrome-192x192.png";
+import "./favicon/android-chrome-512x512.png";
+import "./favicon/apple-touch-icon.png";
+import "./favicon/favicon-16x16.png";
+import "./favicon/favicon-32x32.png";
+import "./favicon/favicon.ico";
+import "./favicon/site.webmanifest";
 
-export { sayHi };
+// Loading assets
+import "./assets/sun.svg";
+import "./assets/sunset.svg";
+import "./assets/wind.svg";
+import "./assets/clouds.svg";
+import "./assets/cancel.svg";
+
+// Loading weather icons
+function importAll(r) {
+  return r.keys().map(r);
+}
+importAll(require.context("./assets/weather_icons", false, /\.(png)$/));
