@@ -223,11 +223,17 @@ main {
 
 // add-trip-form *********************
 #add-trip-form {
-  height: 12vh;
   margin-top: 1em;
-  display: flex;
   justify-content: center;
   display: none;
+  height: 0;
+  overflow: hidden;
+  transition: height 350ms ease-in-out;
+}
+
+#add-trip-form.is-visible {
+  display: flex;
+  height: auto;
 }
 
 form {

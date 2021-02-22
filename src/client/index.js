@@ -1,5 +1,10 @@
+// Fetch current weather
 import { fetchCurrentWeather } from "./js/cuurentWeatherFetcher";
 export { fetchCurrentWeather };
+
+// Add trip
+import { showAddTripForm } from "./js/addTrip";
+export { showAddTripForm };
 
 // scss files.
 import "./styles/style.scss";
@@ -16,6 +21,7 @@ import "./favicon/site.webmanifest";
 // Loading assets
 import "./assets/sun.svg";
 import "./assets/sunset.svg";
+import "./assets/night.svg";
 import "./assets/wind.svg";
 import "./assets/clouds.svg";
 import "./assets/cancel.svg";
