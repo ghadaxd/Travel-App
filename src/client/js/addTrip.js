@@ -1,18 +1,10 @@
+import { getWeather } from "./currentWeatherFetcher";
 /*
  *
  * Global vars
  *
  */
-
 let trips = [];
-const trip = {
-  id: Math.floor(Math.random() * 100),
-  city: "",
-  departureDate: "",
-  countdown: 00,
-  weatherInfo: {},
-  imageURL: "",
-};
 
 /*
  *
@@ -20,7 +12,7 @@ const trip = {
  *
  */
 
-const showAddTripForm = () => {
+export const showAddTripForm = () => {
   const addTripForm = document.getElementById("add-trip-form");
 
   // set the date input
@@ -112,7 +104,7 @@ const getCityLatLon = (cityData) => {
 
   const axios = require("axios");
   return axios
-    .get("http://localhost:9090/cityLatLon?city=" + city)
+    .get("http://localhost:9090/cityLatLon/" + city)
     .then((response) => {
       // in case of success (200)
       // Get city lat and lon
@@ -152,9 +144,19 @@ const addTrip = async (event) => {
   // Get the countdown of the trip.
   const countdown = getCountdown(departureDate);
   // Get Lat and Lon of the city.
-  const cityLatLon = await getCityLatLon(city);
+  const cityLatLon = JSON.stringify(await getCityLatLon(city));
   console.log(cityLatLon);
   // Get weather info for that city.
+  let weatherInfo;
+  // If the trip is within a week, get current weather.
+  if (countdown <= 7) {
+    weatherInfo = await getWeather(cityLatLon, "current");
+    console.log(weatherInfo);
+  } else {
+    // If it's in the future, get a predicted forecast.
+    weatherInfo = await getWeather(cityLatLon, "forecast");
+    console.log(weatherInfo);
+  }
   // Get an image for that city.
   // Update the page with the new information.
 

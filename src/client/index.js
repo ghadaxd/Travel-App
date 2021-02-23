@@ -1,5 +1,5 @@
 // Fetch current weather
-import { fetchCurrentWeather } from "./js/cuurentWeatherFetcher";
+import { fetchCurrentWeather } from "./js/currentWeatherFetcher";
 export { fetchCurrentWeather };
 
 // Add trip

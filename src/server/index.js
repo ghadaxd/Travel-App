@@ -17,14 +17,14 @@ app.get("/", function (req, res) {
   res.sendFile(path.resolve("src/client/views/index.html"));
 });
 
-const getCurrentWeather = require("./getCurrentWeather.js");
-app.get("/currentWeather/:latLon?", function (req, res) {
-  getCurrentWeather(req.query.latLon, res);
+const getWeather = require("./getWeather.js");
+app.get("/getWeather/:latLon/:type", function (req, res) {
+  getWeather(req.params.latLon, res, req.params.type);
 });
 
 const getCityLatLon = require("./getCityLatLon.js");
-app.get("/cityLatLon/:city?", function (req, res) {
-  getCityLatLon(req.query.city, res);
+app.get("/cityLatLon/:city", function (req, res) {
+  getCityLatLon(req.params.city, res);
 });
 
 // designates what port the app will listen to for incoming requests
