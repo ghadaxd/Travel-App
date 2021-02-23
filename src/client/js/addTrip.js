@@ -135,40 +135,99 @@ const getCityLatLon = (cityData) => {
     });
 };
 
+const showTrips = () => {
+  const tripsLength = trips.length;
+  if (tripsLength === 1) {
+    const mainTripContainer = document.getElementById("main-trip-card");
+    mainTripContainer.classList.remove("flex-center-col");
+
+    mainTripContainer.innerHTML = `
+  <div class='trip-preview-img'></div>
+  <div id='main-trip-info'>
+    <!-- <a href='#' id='delete-trip'></a> -->
+    <div class='trip-info'>
+      <h2 class='dist-name'>${trips[0].city}</h2>
+      <h4 class='departure-date'>${trips[0].departureDate}</h4>
+      <h3 class='remaining-days'>${trips[0].countdown} ${
+      trips[0].countdown === 1 ? "day" : "days"
+    }</h3>
+     <h5 class='weather-desc'>${trips[0].weatherInfo.weather.description}.</h5>
+    </div>
+   <div class='current-weather-details'>
+      <div class='flex-center-col'>
+       <span>High</span><span>45</span>
+     </div>
+     <div class='flex-center-col'>
+        <span>Low</span> <span>12</span>
+     </div>
+     <div class='flex-center-col'>
+       <span>Wind</span> <span>10</span>
+     </div>
+     <div class='flex-center-col'>
+        <span>Cloud</span> <span>13</span>
+     </div>
+   </div>
+  </div>`;
+  }
+};
+
+const formatDate = (date) => {
+  const convertedDate = new Date(date);
+  const month = convertedDate.getMonth() + 1;
+  return (
+    convertedDate.getDate() + "/" + month + "/" + convertedDate.getFullYear()
+  );
+};
+
 const addTrip = async (event) => {
   const city = document.getElementById("destination").value;
   const departureDate = document.getElementById("departure-date").value;
 
   // Validate form
   addTripFormValidation(event, city, departureDate);
+
   // Get the countdown of the trip.
   const countdown = getCountdown(departureDate);
+
   // Get Lat and Lon of the city.
   const cityLatLon = JSON.stringify(await getCityLatLon(city));
-  console.log(cityLatLon);
+
   // Get weather info for that city.
-  let weatherInfo;
+  let weatherInfo, cityName;
   // If the trip is within a week, get current weather.
   if (countdown <= 7) {
     weatherInfo = await getWeather(cityLatLon, "current");
-    console.log(weatherInfo);
+    cityName = weatherInfo.data[0].city_name;
   } else {
     // If it's in the future, get a predicted forecast.
     weatherInfo = await getWeather(cityLatLon, "forecast");
-    console.log(weatherInfo);
+    cityName = weatherInfo.city_name;
   }
-  // Get an image for that city.
-  // Update the page with the new information.
 
+  // Get an image for that city.
+  const imageURL = "";
+  // Save the object in trips
   // Trip object
-  // const trip = {
-  //   id: Math.floor(Math.random() * 100),
-  //   city,
-  //   departureDate,
-  //   countdown,
-  //   weatherInfo: {},
-  //   imageURL: "",
-  // };
+  const trip = {
+    // id: Math.floor(Math.random() * 100),
+    city: cityName,
+    departureDate: formatDate(departureDate),
+    countdown,
+    weatherInfo: weatherInfo.data[0],
+    imageURL,
+  };
+  trips.push(trip);
+
+  // Reorder trips based on the closet trip (countdown)
+  trips.sort((a, b) => {
+    return a.countdown - b.countdown;
+  });
+
+  // Close add trip form
+  hideAddTripForm();
+  console.log(trips);
+  // Show the new added trip
+  showTrips();
 };
 
 /*

@@ -58,7 +58,7 @@ export const getWeather = async (latLon, type) => {
     .get(`http://localhost:9090/getWeather/${latLon}/${type}`)
     .then((response) => {
       // in case of success (200)
-      return response.data.data[0];
+      return response.data;
     })
     .catch((error) => {
       // in case of failure
@@ -83,7 +83,8 @@ export const getWeather = async (latLon, type) => {
 
 const showCurrentWeather = async () => {
   const userLatLon = JSON.stringify(await getUserLocation());
-  const currentWeatherData = await getWeather(userLatLon, "current");
+  let currentWeatherData = await getWeather(userLatLon, "current");
+  currentWeatherData = currentWeatherData.data[0];
 
   document.getElementById("temperature").innerHTML =
     currentWeatherData.temp +

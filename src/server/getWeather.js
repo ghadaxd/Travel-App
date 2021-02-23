@@ -101,7 +101,12 @@ const getWeather = (latLon, res, type) => {
         sunset_ts: 1530391260,
       },
     ],
-    count: 1,
+    city_name: "Raleigh",
+    lon: "-78.63861",
+    timezone: "America/New_York",
+    lat: "35.7721",
+    country_code: "US",
+    state_code: "NC",
   };
 
   return type === "current"
