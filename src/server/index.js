@@ -18,12 +18,13 @@ app.get("/", function (req, res) {
 });
 
 const getCurrentWeather = require("./getCurrentWeather.js");
-
 app.get("/currentWeather/:latLon?", function (req, res) {
   getCurrentWeather(req.query.latLon, res);
-  // .then((results) => {
-  // res.send(results);
-  // });
+});
+
+const getCityLatLon = require("./getCityLatLon.js");
+app.get("/cityLatLon/:city?", function (req, res) {
+  getCityLatLon(req.query.city, res);
 });
 
 // designates what port the app will listen to for incoming requests

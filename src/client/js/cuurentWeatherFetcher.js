@@ -52,16 +52,15 @@ const getUserLocation = () => {
     });
 };
 
-const getCurrentWeather = async () => {
-  const latLon = JSON.stringify(await getUserLocation());
+const getCurrentWeather = async (latLon) => {
   const axios = require("axios");
   return axios
     .get("http://localhost:9090/currentWeather?latLon=" + latLon)
     .then((response) => {
       // in case of success (200)
-      //   return showCurrentWeather(response.data.data[0]);
+      // return response.data.data[0];
       // for testing
-      return showCurrentWeather(response.data[0]);
+      return response.data[0];
     })
     .catch((error) => {
       // in case of failure
@@ -84,7 +83,10 @@ const getCurrentWeather = async () => {
     });
 };
 
-const showCurrentWeather = (currentWeatherData) => {
+const showCurrentWeather = async () => {
+  const userLatLon = JSON.stringify(await getUserLocation());
+  const currentWeatherData = await getCurrentWeather(userLatLon);
+
   document.getElementById("temperature").innerHTML =
     currentWeatherData.temp +
     "° " +
@@ -99,7 +101,7 @@ const showCurrentWeather = (currentWeatherData) => {
 
 const fetchCurrentWeather = () => {
   sayHi();
-  getCurrentWeather();
+  showCurrentWeather();
 };
 
 /*
