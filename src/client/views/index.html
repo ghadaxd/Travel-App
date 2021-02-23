@@ -122,12 +122,18 @@
         <form class="card">
           <h1>Add Trip</h1>
           <div id="destination-error" class="error"></div>
-          <input id="destination" type="text" placeholder="Traveling to" />
+          <input
+            id="destination"
+            type="text"
+            placeholder="Traveling to"
+            required
+          />
           <input
             id="departure-date"
             type="date"
             min="today"
             placeholder="Departing in"
+            required
           />
           <button id="add-trip-btn" class="btn primary-btn">Add</button>
           <a id="hide-add-trip-form" href="#">
