@@ -138,12 +138,44 @@ const getCityLatLon = (cityData) => {
     });
 };
 
+const getCityImage = (city) => {
+  const axios = require("axios");
+  return axios
+    .get("http://localhost:9090/cityImage/" + city)
+    .then((response) => {
+      // in case of success (200)
+      // return city image url
+      return response.data.hits[0].webformatURL;
+    })
+    .catch((error) => {
+      // in case of failure
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.statusText);
+        return error.response.status + " (" + error.response.statusText + ")";
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+        return error.request;
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log(error.message);
+        return error.message;
+      }
+    });
+};
+
 const showMainTrip = () => {
   const mainTripContainer = document.getElementById("main-trip-card");
   mainTripContainer.classList.remove("flex-center-col");
 
   mainTripContainer.innerHTML = `
-  <img src='../assets/paris.jpg' class="trip-preview-img" alt="City image" width="50%" height="auto" />
+  <img src='${
+    trips[0].imageURL
+  }' class="trip-preview-img" alt="City image" width="50%" height="auto" />
   <div id='main-trip-info'>
   <!-- <a href='#' id='delete-trip'></a> -->
   <div class='trip-info'>
@@ -225,7 +257,7 @@ const createTripPreview = (trip) => {
   tripPreview.setAttribute("class", "card trip-preview");
 
   const tripImage = document.createElement("img");
-  tripImage.setAttribute("src", "../assets/paris.jpg");
+  tripImage.setAttribute("src", trip.imageURL);
   tripImage.setAttribute("class", "trip-preview-img");
   tripImage.setAttribute("alt", "City image");
   tripImage.setAttribute("width", "auto");
@@ -344,7 +376,7 @@ const addTrip = async (event) => {
   }
 
   // Get an image for that city.
-  const imageURL = "";
+  const imageURL = await getCityImage(cityName);
   // Save the object in trips
   // Trip object
   const trip = {

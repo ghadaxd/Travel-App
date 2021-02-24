@@ -27,6 +27,11 @@ app.get("/cityLatLon/:city", function (req, res) {
   getCityLatLon(req.params.city, res);
 });
 
+const getCityImage = require("./getCityImage.js");
+app.get("/cityImage/:city", function (req, res) {
+  getCityImage(req.params.city, res);
+});
+
 // designates what port the app will listen to for incoming requests
 app.listen(9090, function () {
   console.log("Listening on port 9090 for localhost!");
