@@ -4,7 +4,6 @@ import { getWeather } from "./currentWeatherFetcher";
  * Global vars
  *
  */
-// let trips = localStorage.getItem("trips") ? localStorage.clear() : [];
 let trips = localStorage.getItem("trips")
   ? JSON.parse(localStorage.getItem("trips"))
   : [];
