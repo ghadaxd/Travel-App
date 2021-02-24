@@ -121,27 +121,30 @@ main {
 #main-trip-card {
   width: 64%;
   height: 30vh;
-  //
   display: flex;
 
   .trip-info {
     flex: 1;
-    width: 100%;
-    .dist-name {
-      width: 50%;
-      margin: 1em 0 0 1em;
+    width: auto;
+    padding: 1em;
+    padding-bottom: 0;
+
+    .temperature-c {
+      display: flex;
+      align-items: center;
     }
-    .departure-date {
-      margin-left: 1.5em;
-    }
-    .remaining-days {
-      text-align: center;
-    }
+
+    .remaining-days,
     .weather-desc {
       text-align: center;
+    }
+
+    .weather-desc {
       color: $lg-font-color;
+      margin-top: 0.7em;
     }
   }
+
   .current-weather-details {
     bottom: 0;
     border-radius: 0 0 $card-border-radius 0;
@@ -220,7 +223,7 @@ main {
   align-items: center;
   background-color: $primary-btn-bg-color;
   padding: 0 1.5em;
-  height: 50%;
+  // height: 50%;
   color: $figure-font-color;
   border-radius: 0 0 $card-border-radius $card-border-radius;
 }
@@ -305,10 +308,11 @@ input:focus {
 
 #ctrl-btn {
   flex: 2;
+  display: none;
 
-  .btn {
-    width: 80%;
-  }
+  // .btn {
+  //   width: 80%;
+  // }
 }
 
 .trip-preview {
@@ -324,10 +328,10 @@ input:focus {
 }
 
 .trip-preview-img {
-  background: url("../assets/paris.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 50%;
+  // background: url("../assets/paris.jpg") no-repeat;
+  // background-size: cover;
+  // background-position: center;
+  // width: 50%;
   border-radius: $card-border-radius 0 0 $card-border-radius;
 }
 
@@ -340,7 +344,8 @@ input:focus {
   margin-bottom: 0;
 }
 
-.departure-date {
+.departure-date,
+.temperature-c {
   color: $dg-font-color;
   margin-top: 0;
 }
@@ -417,7 +422,30 @@ input:focus {
 
   #main-trip-card {
     width: auto;
+    height: auto;
+    flex-direction: column;
+
+    .current-weather-details {
+      border-radius: 0 0 $card-border-radius $card-border-radius;
+    }
+  }
+
+  #no-trips {
     padding: 1em;
+  }
+
+  .trip-preview-img {
+    width: 100%;
+    border-radius: $card-border-radius $card-border-radius 0 0;
+  }
+
+  .trip-info {
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin: 0;
+    }
   }
 
   #current-weather {

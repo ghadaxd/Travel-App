@@ -33,12 +33,15 @@
     <main>
       <section id="main-content">
         <div id="main-trip-card" class="card flex-center-col">
-          <!-- add this class for the first time "flex-center-col" -->
-          <h1>Hey, 😃</h1>
-          <p>You don't have any trips yet, start by adding your first trip.</p>
-          <button id="show-add-trip-btn" class="btn primary-btn">
-            Add Trip
-          </button>
+          <div id="no-trips" class="flex-center-col">
+            <h1>Hey, 😃</h1>
+            <p>
+              You don't have any trips yet, start by adding your first trip.
+            </p>
+            <button id="show-add-trip-btn" class="btn primary-btn">
+              Add Trip
+            </button>
+          </div>
         </div>
         <div id="current-weather" class="bg-grad">
           <div class="flex-row-space">
@@ -141,12 +144,12 @@
               <h3 class="remaining-days">220 days</h3>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div id="ctrl-btn" class="flex-center-col">
-          <button class="btn bg-grad">Add Trip</button>
-          <button class="btn bg-grad">My Trips</button>
-        </div> -->
+          <button id="add-trip-btn-sec" class="btn bg-grad">Add Trip</button>
+          <!-- <button class="btn bg-grad">My Trips</button> -->
+        </div>
       </section>
       <!-- <section id="more-trips">
         <div class="row">

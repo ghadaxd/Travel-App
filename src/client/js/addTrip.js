@@ -4,7 +4,10 @@ import { getWeather } from "./currentWeatherFetcher";
  * Global vars
  *
  */
-let trips = [];
+// let trips = localStorage.getItem("trips") ? localStorage.clear() : [];
+let trips = localStorage.getItem("trips")
+  ? JSON.parse(localStorage.getItem("trips"))
+  : [];
 
 /*
  *
@@ -135,39 +138,96 @@ const getCityLatLon = (cityData) => {
     });
 };
 
+const showMainTrip = () => {
+  const mainTripContainer = document.getElementById("main-trip-card");
+  mainTripContainer.classList.remove("flex-center-col");
+
+  mainTripContainer.innerHTML = `
+<img src='../assets/paris.jpg' class="trip-preview-img" alt="City image" width="50%" height="auto" />
+<div id='main-trip-info'>
+  <!-- <a href='#' id='delete-trip'></a> -->
+  <div class='trip-info'>
+  <div class="flex-row-space">
+    <div class="flex-center-col">
+      <h2 class='dist-name'>${trips[0].city}</h2>
+      <h5 class='departure-date'>${trips[0].departureDate}</h5>
+    </div>
+    <h4 class='temperature-c'>${
+      trips[0].weatherInfo.temp
+    }°<img height='25' width='25' alt='${
+    trips[0].weatherInfo.weather.description
+  }' src='../assets/weather_icons/${
+    trips[0].weatherInfo.weather.icon
+  }.png' /></h4>
+  </div>
+    <h3 class='remaining-days'>${trips[0].countdown} ${
+    trips[0].countdown === 1 ? "day" : "days"
+  }</h3>
+   <h5 class='weather-desc'>${trips[0].weatherInfo.weather.description}.</h5>
+  </div>
+<div class="current-weather-details">
+            <div class="flex-center-col">
+            ${
+              trips[0].weatherType === "current"
+                ? `<img
+            src="../assets/sun.svg"
+            width="25"
+            height="25"
+            alt="Sunrise time"
+          />`
+                : "H"
+            }
+              <span>${
+                trips[0].weatherType === "current"
+                  ? trips[0].weatherInfo.sunrise
+                  : trips[0].weatherInfo.high_temp
+              }</span>
+            </div>
+            <div class="flex-center-col">
+            ${
+              trips[0].weatherType === "current"
+                ? `<img
+            src="../assets/sunset.svg"
+            width="25"
+            height="25"
+            alt="Sunset time"
+          />`
+                : "L"
+            }
+              <span>${
+                trips[0].weatherType === "current"
+                  ? trips[0].weatherInfo.sunset
+                  : trips[0].weatherInfo.low_temp
+              }</span>
+            </div>
+            <div class="flex-center-col">
+              <img
+                src="../assets/wind.svg"
+                width="25"
+                height="25"
+                alt="Wind speed"
+              /><span>${trips[0].weatherInfo.wind_spd}</span>
+            </div>
+            <div class="flex-center-col">
+              <img
+                src="../assets/clouds.svg"
+                width="25"
+                height="25"
+                alt="Clouds"
+              /><span>${trips[0].weatherInfo.clouds}</span>
+            </div>
+          </div>
+</div>`;
+};
+
 const showTrips = () => {
   const tripsLength = trips.length;
   if (tripsLength === 1) {
-    const mainTripContainer = document.getElementById("main-trip-card");
-    mainTripContainer.classList.remove("flex-center-col");
-
-    mainTripContainer.innerHTML = `
-  <div class='trip-preview-img'></div>
-  <div id='main-trip-info'>
-    <!-- <a href='#' id='delete-trip'></a> -->
-    <div class='trip-info'>
-      <h2 class='dist-name'>${trips[0].city}</h2>
-      <h4 class='departure-date'>${trips[0].departureDate}</h4>
-      <h3 class='remaining-days'>${trips[0].countdown} ${
-      trips[0].countdown === 1 ? "day" : "days"
-    }</h3>
-     <h5 class='weather-desc'>${trips[0].weatherInfo.weather.description}.</h5>
-    </div>
-   <div class='current-weather-details'>
-      <div class='flex-center-col'>
-       <span>High</span><span>45</span>
-     </div>
-     <div class='flex-center-col'>
-        <span>Low</span> <span>12</span>
-     </div>
-     <div class='flex-center-col'>
-       <span>Wind</span> <span>10</span>
-     </div>
-     <div class='flex-center-col'>
-        <span>Cloud</span> <span>13</span>
-     </div>
-   </div>
-  </div>`;
+    showMainTrip();
+    document.getElementById("ctrl-btn").style.display = "flex";
+  } else if (tripsLength !== 0) {
+    showMainTrip();
+    document.getElementById("ctrl-btn").style.display = "flex";
   }
 };
 
@@ -193,15 +253,17 @@ const addTrip = async (event) => {
   const cityLatLon = JSON.stringify(await getCityLatLon(city));
 
   // Get weather info for that city.
-  let weatherInfo, cityName;
+  let weatherInfo, cityName, weatherType;
   // If the trip is within a week, get current weather.
   if (countdown <= 7) {
     weatherInfo = await getWeather(cityLatLon, "current");
     cityName = weatherInfo.data[0].city_name;
+    weatherType = "current";
   } else {
     // If it's in the future, get a predicted forecast.
     weatherInfo = await getWeather(cityLatLon, "forecast");
     cityName = weatherInfo.city_name;
+    weatherType = "forecast";
   }
 
   // Get an image for that city.
@@ -214,6 +276,7 @@ const addTrip = async (event) => {
     departureDate: formatDate(departureDate),
     countdown,
     weatherInfo: weatherInfo.data[0],
+    weatherType,
     imageURL,
   };
   trips.push(trip);
@@ -223,9 +286,11 @@ const addTrip = async (event) => {
     return a.countdown - b.countdown;
   });
 
+  // Save trips in local storage
+  localStorage.setItem("trips", JSON.stringify(trips));
+
   // Close add trip form
   hideAddTripForm();
-  console.log(trips);
   // Show the new added trip
   showTrips();
 };
@@ -236,8 +301,14 @@ const addTrip = async (event) => {
  *
  */
 
+document.addEventListener("DOMContentLoaded", showTrips);
+
 document
   .getElementById("show-add-trip-btn")
+  .addEventListener("click", showAddTripForm);
+
+document
+  .getElementById("add-trip-btn-sec")
   .addEventListener("click", showAddTripForm);
 
 document
