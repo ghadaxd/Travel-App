@@ -220,48 +220,79 @@ const showMainTrip = () => {
 </div>`;
 };
 
+const createTripPreview = (trip) => {
+  const tripPreview = document.createElement("div");
+  tripPreview.setAttribute("class", "card trip-preview");
+
+  const tripImage = document.createElement("img");
+  tripImage.setAttribute("src", "../assets/paris.jpg");
+  tripImage.setAttribute("class", "trip-preview-img");
+  tripImage.setAttribute("alt", "City image");
+  tripImage.setAttribute("width", "auto");
+  tripImage.setAttribute("height", "100");
+
+  tripPreview.appendChild(tripImage);
+
+  const tripInfo = document.createElement("div");
+  tripInfo.setAttribute("class", "trip-info flex-center-col");
+
+  const cityName = document.createElement("h2");
+  cityName.setAttribute("class", "dist-name");
+  cityName.textContent = trip.city;
+
+  const deptDate = document.createElement("h4");
+  deptDate.setAttribute("class", "departure-date");
+  deptDate.textContent = trip.departureDate;
+
+  const countdown = document.createElement("h3");
+  countdown.setAttribute("class", "remaining-days");
+  countdown.textContent =
+    trip.countdown === 1 ? trip.countdown + " day" : trip.countdown + " days";
+
+  tripInfo.appendChild(cityName);
+  tripInfo.appendChild(deptDate);
+  tripInfo.appendChild(countdown);
+
+  tripPreview.appendChild(tripInfo);
+
+  return tripPreview;
+};
+
 const showSecondaryTrips = () => {
   const comingTripsContainer = document.getElementById("coming-trips-load");
   comingTripsContainer.innerHTML = "";
   const comingTrips = trips.slice(1, 3);
 
   comingTrips.map((trip) => {
-    const tripPreview = document.createElement("div");
-    tripPreview.setAttribute("class", "card trip-preview");
-
-    const tripImage = document.createElement("img");
-    tripImage.setAttribute("src", "../assets/paris.jpg");
-    tripImage.setAttribute("class", "trip-preview-img");
-    tripImage.setAttribute("alt", "City image");
-    tripImage.setAttribute("width", "auto");
-    tripImage.setAttribute("height", "100");
-
-    tripPreview.appendChild(tripImage);
-
-    const tripInfo = document.createElement("div");
-    tripInfo.setAttribute("class", "trip-info flex-center-col");
-
-    const cityName = document.createElement("h2");
-    cityName.setAttribute("class", "dist-name");
-    cityName.textContent = trip.city;
-
-    const deptDate = document.createElement("h4");
-    deptDate.setAttribute("class", "departure-date");
-    deptDate.textContent = trip.departureDate;
-
-    const countdown = document.createElement("h3");
-    countdown.setAttribute("class", "remaining-days");
-    countdown.textContent =
-      trip.countdown === 1 ? trip.countdown + " day" : trip.countdown + " days";
-
-    tripInfo.appendChild(cityName);
-    tripInfo.appendChild(deptDate);
-    tripInfo.appendChild(countdown);
-
-    tripPreview.appendChild(tripInfo);
-
-    comingTripsContainer.appendChild(tripPreview);
+    comingTripsContainer.appendChild(createTripPreview(trip));
   });
+};
+
+const showMoreTrips = () => {
+  const moreTripsContainer = document.getElementById("more-trips");
+  moreTripsContainer.innerHTML = "";
+
+  const moreTrips = trips.slice(3);
+
+  if (moreTrips !== undefined) {
+    let row;
+    moreTrips.map((trip, index) => {
+      if (index === 0 || index % 2 === 0) {
+        row = document.createElement("div");
+        row.setAttribute("class", "row");
+      }
+
+      row.appendChild(createTripPreview(trip));
+
+      if (
+        (index !== 0 && index % 2 !== 0) ||
+        moreTrips.length === 1 ||
+        moreTrips.length === index + 1
+      ) {
+        moreTripsContainer.appendChild(row);
+      }
+    });
+  }
 };
 
 const showTrips = () => {
@@ -272,6 +303,7 @@ const showTrips = () => {
   } else if (tripsLength !== 0) {
     showMainTrip();
     showSecondaryTrips();
+    showMoreTrips();
     document.getElementById("ctrl-btn").style.display = "flex";
   }
 };

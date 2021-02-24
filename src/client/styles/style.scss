@@ -492,6 +492,15 @@ input:focus {
   #coming-trips-load {
     flex-direction: column;
   }
+
+  #more-trips {
+    .trip-preview {
+      width: auto !important;
+    }
+    .row {
+      flex-direction: column;
+    }
+  }
 }
 
 /* For tablet */
