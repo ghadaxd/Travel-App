@@ -1,5 +1,4 @@
 const path = require("path");
-// const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -28,14 +27,30 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
-        test: /\.(png|webmanifest|manifest)$/i,
+        test: /\.(png|ico|webmanifest|manifest)$/i,
         loader: "file-loader",
         options: {
           name: "[name].[ext]",
           outputPath: "favicon",
+        },
+      },
+      {
+        test: /\.(jpg|svg)$/i,
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          outputPath: "assets",
+        },
+      },
+      {
+        test: /([a-z][0-9]{2}[a-z])\.(png)$/i,
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          outputPath: "assets/weather_icons",
         },
       },
     ],

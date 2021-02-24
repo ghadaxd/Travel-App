@@ -109,7 +109,6 @@ main {
 }
 
 // main-content *********************
-
 #main-content {
   display: flex;
   flex-direction: row;
@@ -117,7 +116,6 @@ main {
 }
 
 // main-trip-card *********************
-
 #main-trip-card {
   width: 64%;
   height: 30vh;
@@ -167,7 +165,6 @@ main {
 }
 
 // current-weather *********************
-
 #current-weather {
   width: 35%;
   border-radius: $card-border-radius;
@@ -238,19 +235,6 @@ main {
   height: auto;
 }
 
-// #hide-add-trip-form {
-//   background: url("../assets/cancel.svg") no-repeat;
-//   background-size: cover;
-//   background-position: center;
-//   background-color: $primary-btn-bg-color;
-//   border-radius: $elem-border-radius;
-//   width: 10%;
-//   height: 11%;
-//   position: relative;
-//   left: 19em;
-//   top: 0.5em;
-// }
-
 form {
   width: 40vw;
   padding: 1em;
@@ -289,11 +273,6 @@ input:focus {
 #coming-trips {
   margin: 1em 0;
   display: flex;
-  // min-height: 8em;
-
-  // .flex-center-col {
-  //   justify-content: space-evenly;
-  // }
 }
 
 #coming-trips-load {
@@ -304,10 +283,6 @@ input:focus {
 #ctrl-btn {
   flex: 2;
   display: none;
-
-  // .btn {
-  //   width: 80%;
-  // }
 }
 
 .trip-preview {

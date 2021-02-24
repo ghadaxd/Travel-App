@@ -9,12 +9,12 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 
-// app.use(express.static("dist"));
-app.use(express.static(path.resolve("src/client")));
+app.use(express.static("dist"));
+// app.use(express.static(path.resolve("src/client")));
 
 app.get("/", function (req, res) {
-  // res.sendFile("dist/index.html");
-  res.sendFile(path.resolve("src/client/views/index.html"));
+  res.sendFile("dist/index.html");
+  // res.sendFile(path.resolve("src/client/views/index.html"));
 });
 
 const getWeather = require("./getWeather.js");

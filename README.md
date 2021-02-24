@@ -2,7 +2,7 @@
 
 ## Overview
 
-An application where the user can enter any text or article, then it will be analyzed and sentiment analysis is going to be shown. It uses Natural Language Processing and Sentiment Analysis from MeaningCloud.
+This is a travel app that obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs.
 
 This project is part of the Frontend web developer nano degree program.
 
@@ -12,10 +12,24 @@ This project is part of the Frontend web developer nano degree program.
 - Web application framework for routing - Express.
 - Build tool - Webpack.
 - External script - Service Worker for offline functionality.
-- External API - MeaningCloud API.
 - SASS for styling.
-- Axios for calling API.
+- Axios for calling External API.
 - Jest for unit testing.
+
+## Features
+
+1. The user can view current weather forcast of their current location.
+1. The user can add a trip by entering destination (text only allowed) and departure date (past dates are not allowed).
+1. The user can view current weather forcate for their trips if it's within a week.
+1. The user can view future weather forcate for their trips if it's in the future (16 days forcast).
+1. The user can view an image for their destination.
+1. The user can view how many days left for their trips.
+1. The user can add more than a trip. `FROM Suggestions`
+1. The user can view more than a trip.
+1. Trips are ordered for the user based on the remaining days for each. (ascending). `FROM Suggestions`
+1. The application is responsive.
+1. The application incorporate icons into forcast. `FROM Suggestions`
+1. Trips data is saved in a local storage.`FROM Suggestions`
 
 ## Getting started (Instructions)
 
@@ -33,9 +47,24 @@ This project has a local server, server side code, and client side code.
 
 #### Forth, open the app on the browser
 
-`http://localhost:8080/`
+`http://localhost:9090/`
 
-#### Finaly, to test the app, try any text or article you have ...
+#### Finaly, to test the app, try to add a trip using the following data ...
 
-ex:
-`In the country of Sokovia, the Avengers Tony Stark, Steve Rogers, Thor, Bruce Banner, Natasha Romanoff, and Clint Barto raid a Hydra outpost led by Wolfgang von Strucker, who has been experimenting on humans using the scepter previously wielded by Loki. They encounter two of Strucker's experiments twins Pietro, who has superhuman speed, and Wanda Maximoff, who can manipulate minds and project energy and apprehend Strucker, while Stark retrieves Loki's scepter.`
+destination: `London`
+departure data: `Pick up any future date`
+
+## Integrated APIs
+
+The user APIs are:
+
+1. To get current user location and Lat and Lon: `extreme-ip-lookup`
+1. To get current and future weather forcast: `weatherbit.io`
+1. To get a city Lat and Lon: `geonames.org`
+1. To get a city image: `pixabay.com`
+
+## Used resources
+
+1. Google fonts.
+1. For fav icon: `favicon.io`
+1. For icons: `iconscout.com`
