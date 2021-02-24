@@ -62,7 +62,7 @@ const hideAddTripForm = () => {
   }, 500);
 };
 
-const addTripFormValidation = (event, city, departureDate) => {
+export const addTripFormValidation = (event, city, departureDate) => {
   event.preventDefault();
 
   let destination = city;

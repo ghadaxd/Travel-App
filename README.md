@@ -39,7 +39,11 @@ This project has a local server, server side code, and client side code.
 
 `npm i`
 
-#### Second, add an `.env` file with `API_KEY` variable
+#### Second, add an `.env` file with the following `API_KEY` variables
+
+`WEATHER_API_KEY`
+`GEONAMES_USERNAME`
+`PIXABAY_API_KEY`
 
 #### Third, run the server (server uses port 8080)
 
