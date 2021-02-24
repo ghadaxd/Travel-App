@@ -143,8 +143,8 @@ const showMainTrip = () => {
   mainTripContainer.classList.remove("flex-center-col");
 
   mainTripContainer.innerHTML = `
-<img src='../assets/paris.jpg' class="trip-preview-img" alt="City image" width="50%" height="auto" />
-<div id='main-trip-info'>
+  <img src='../assets/paris.jpg' class="trip-preview-img" alt="City image" width="50%" height="auto" />
+  <div id='main-trip-info'>
   <!-- <a href='#' id='delete-trip'></a> -->
   <div class='trip-info'>
   <div class="flex-row-space">
@@ -220,6 +220,50 @@ const showMainTrip = () => {
 </div>`;
 };
 
+const showSecondaryTrips = () => {
+  const comingTripsContainer = document.getElementById("coming-trips-load");
+  comingTripsContainer.innerHTML = "";
+  const comingTrips = trips.slice(1, 3);
+
+  comingTrips.map((trip) => {
+    const tripPreview = document.createElement("div");
+    tripPreview.setAttribute("class", "card trip-preview");
+
+    const tripImage = document.createElement("img");
+    tripImage.setAttribute("src", "../assets/paris.jpg");
+    tripImage.setAttribute("class", "trip-preview-img");
+    tripImage.setAttribute("alt", "City image");
+    tripImage.setAttribute("width", "auto");
+    tripImage.setAttribute("height", "100");
+
+    tripPreview.appendChild(tripImage);
+
+    const tripInfo = document.createElement("div");
+    tripInfo.setAttribute("class", "trip-info flex-center-col");
+
+    const cityName = document.createElement("h2");
+    cityName.setAttribute("class", "dist-name");
+    cityName.textContent = trip.city;
+
+    const deptDate = document.createElement("h4");
+    deptDate.setAttribute("class", "departure-date");
+    deptDate.textContent = trip.departureDate;
+
+    const countdown = document.createElement("h3");
+    countdown.setAttribute("class", "remaining-days");
+    countdown.textContent =
+      trip.countdown === 1 ? trip.countdown + " day" : trip.countdown + " days";
+
+    tripInfo.appendChild(cityName);
+    tripInfo.appendChild(deptDate);
+    tripInfo.appendChild(countdown);
+
+    tripPreview.appendChild(tripInfo);
+
+    comingTripsContainer.appendChild(tripPreview);
+  });
+};
+
 const showTrips = () => {
   const tripsLength = trips.length;
   if (tripsLength === 1) {
@@ -227,6 +271,7 @@ const showTrips = () => {
     document.getElementById("ctrl-btn").style.display = "flex";
   } else if (tripsLength !== 0) {
     showMainTrip();
+    showSecondaryTrips();
     document.getElementById("ctrl-btn").style.display = "flex";
   }
 };
